@@ -1,0 +1,3 @@
+### Information about the directory structure
+
+http://www.revsys.com/blog/2014/nov/21/recommended-django-project-layout/
