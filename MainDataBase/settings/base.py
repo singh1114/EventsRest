@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eventApp',
+    'overidingAuth',
     'rest_framework',
-    
+
 ]
 
 MIDDLEWARE = [
