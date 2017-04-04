@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'eventApp',
     'overidingAuth',
     'rest_framework',
-
+    'bootstrap3'
 ]
 
 MIDDLEWARE = [
