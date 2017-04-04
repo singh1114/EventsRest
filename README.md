@@ -17,6 +17,34 @@ http://www.revsys.com/blog/2014/nov/21/recommended-django-project-layout/
 
 
 
+## Installation
+
+- `$ sudo apt-get install python3-pip`
+- `$ sudo apt-get install virtualenv`
+- `$ sudo apt-get install git`
+
+Now go to a place where you want to create the virtual environment.
+- `$ virtualenv -p python3 .`
+
+Now fork and clone the repository.
+- `$ git clone https://gitub.com/your_username/EventRest`
+
+- `$ source bin/activate`
+
+- `$ cd EventRest`
+
+- `$ pip install -r Requirements.txt`
+
+Now create the mysql database and change the credentials in the file EventRest/MainDataBase/settings/base.py
+
+After that make the tables and migrate the models.
+
+- `$ python manage.py makemigrations`
+- `$ python manage.py migrate`
+
+Create superuser for admin part
+
+- `$ django-admin create superuser`
 
 ### Future plan
 
