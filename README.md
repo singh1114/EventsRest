@@ -7,6 +7,7 @@ http://www.revsys.com/blog/2014/nov/21/recommended-django-project-layout/
 ### MINIMUM PLAN
 
 - Add accounts in the app.
+- Create the base template.
 - Start by creating the templates for participants.
 - The participant view must consist of a login window.
 - If logged In take them to the view having three buttons.
