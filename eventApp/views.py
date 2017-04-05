@@ -6,7 +6,6 @@ from rest_framework.parsers import JSONParser
 from .models import *
 from .serializers import EventListSerializer
 
-# Create your views here.
 @csrf_exempt
 def event_list(request):
     """

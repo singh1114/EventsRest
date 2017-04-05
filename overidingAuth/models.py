@@ -7,7 +7,7 @@ class memorpart(models.Model):
         User
     )
     memorpart = (
-        ('Member', "member"),
+        ('Member', 'member'),
         ('Participant', "participant")
     )
     memorpart = models.CharField(
