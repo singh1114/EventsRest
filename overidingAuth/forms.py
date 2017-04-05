@@ -11,5 +11,5 @@ class Parti_Form(AuthenticationForm):
                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
     email =  forms.EmailField(label="email", max_length=30,
                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
-    password = forms.PasswordField(label="Password", max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password'}))
+    password = forms.CharField(label="Password", max_length=30,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password', 'type': 'password'}))
