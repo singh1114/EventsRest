@@ -12,7 +12,17 @@ def Parti_login(request):
     }
     return render(request, "overridingAuth/parti_index.html", context)
 
-
+# todo correct this thing up.
+# class ContactView(FormView):
+#     template_name = 'parti_index.html'
+#     form_class = Parti_Form
+#     success_url = '/thanks/'
+#
+#     def form_valid(self, form):
+#         # This method is called when valid form data has been POSTed.
+#         # It should return an HttpResponse.
+#         form.send_email()
+#         return super(ContactView, self).form_valid(form)
 # class Parti_index(CreateView):
 #
 #
