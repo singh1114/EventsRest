@@ -28,13 +28,19 @@ def Parti_login(request):
             password = form.cleaned_data.get('password')
 
             # refer to the User model
-            user = User.objects.filter()
+            user = User(
+                first_name = first_name,
+                last_name = last_name,
+                username = username,
+                email = email,
+                password = password
+                )
+            user.save()
             return HttpResponseRedirect('/thanks/')
     else:
         form = Parti_Form()
 
     return render(request, 'overridingAuth/parti_index.html', {'form': form})
-
 
 
 # todo correct this thing up.
