@@ -1,16 +1,41 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .models import *
 from django.views.generic.edit import CreateView
 from django.contrib.auth import *
 from .forms import *
 # Create your views here.
 
+# def Parti_login(request):
+#     form = Parti_Form(request.POST or None)
+#     context = {
+#         "form" : form,
+#     }
+#     return render(request, "overridingAuth/parti_index.html", context)
+
 def Parti_login(request):
-    form = Parti_Form(request.POST or None)
-    context = {
-        "form" : form,
-    }
-    return render(request, "overridingAuth/parti_index.html", context)
+    # Check if the request method is POST
+    if request.method == 'POST':
+        # Create the form instance
+        form = Parti_Form(request.POST)
+        if form.is_valid():
+
+            # refer to all the form fields
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+
+            # refer to the User model
+            user = User.objects.filter()
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = Parti_Form()
+
+    return render(request, 'overridingAuth/parti_index.html', {'form': form})
+
+
 
 # todo correct this thing up.
 # class ContactView(FormView):
