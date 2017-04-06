@@ -1,7 +1,7 @@
 from django import forms
 
 # If you don't do this you cannot use Bootstrap CSS
-class Parti_Form(forms.Form):
+class Parti_signup_form(forms.Form):
     first_name = forms.CharField(label="First Name", max_length=30,
                                 widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'Firstname'}))
     last_name = forms.CharField(label="Last Name", max_length=30,

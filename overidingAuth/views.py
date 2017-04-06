@@ -9,18 +9,13 @@ from .forms import *
 from django.contrib.auth.hashers import make_password
 # Create your views here.
 
-# def Parti_login(request):
-#     form = Parti_Form(request.POST or None)
-#     context = {
-#         "form" : form,
-#     }
-#     return render(request, "overridingAuth/parti_index.html", context)
-
-def Parti_login(request):
+# This is the sign up view
+def Parti_signup(request):
     # Check if the request method is POST
     if request.method == 'POST':
+
         # Create the form instance
-        form = Parti_Form(request.POST)
+        form = Parti_signup_form(request.POST)
         if form.is_valid():
 
             # refer to all the form fields
@@ -29,9 +24,11 @@ def Parti_login(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
+
             # Encrypt the password
             password = make_password(password)
             # refer to the User model
+
             user = User(
                 first_name = first_name,
                 last_name = last_name,
@@ -40,41 +37,21 @@ def Parti_login(request):
                 password = password,
                 is_staff = True,
                 )
+
             # Now save the user in the database
             user.save()
 
             # It is very important to use this code here.
+            # Once the user is added we can change the group to the user.
             user.groups.add(2)
             user.save()
 
+            # If the form is filled perfectly
             return HttpResponseRedirect('/thanks/')
     else:
-        form = Parti_Form()
-
+        form = Parti_signup_form()
+    # If the user lands up to the page for the first time.
+    # And if the form is not perfectly filled.
     return render(request, 'overridingAuth/parti_index.html', {'form': form})
 
-
-# todo correct this thing up.
-# class ContactView(FormView):
-#     template_name = 'parti_index.html'
-#     form_class = Parti_Form
-#     success_url = '/thanks/'
 #
-#     def form_valid(self, form):
-#         # This method is called when valid form data has been POSTed.
-#         # It should return an HttpResponse.
-#         form.send_email()
-#         return super(ContactView, self).form_valid(form)
-# class Parti_index(CreateView):
-#
-#
-#
-#     model = User
-#     fields = ['first_name', 'last_name', 'username', 'email', 'password']
-#
-#     template_name = 'overridingAuth/parti_index.html'
-#
-# class Parti_login(CreateView):
-#     form = Parti_Form
-#
-#     template_name = 'overridingAuth/parti_index.html'
