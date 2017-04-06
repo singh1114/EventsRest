@@ -4,6 +4,9 @@ from .models import *
 from django.views.generic.edit import CreateView
 from django.contrib.auth import *
 from .forms import *
+
+# This library is used to encrypt the password given by the user
+from django.contrib.auth.hashers import make_password
 # Create your views here.
 
 # def Parti_login(request):
@@ -26,16 +29,24 @@ def Parti_login(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-
+            # Encrypt the password
+            password = make_password(password)
             # refer to the User model
             user = User(
                 first_name = first_name,
                 last_name = last_name,
                 username = username,
                 email = email,
-                password = password
+                password = password,
+                is_staff = True,
                 )
+            # Now save the user in the database
             user.save()
+
+            # It is very important to use this code here.
+            user.groups.add(2)
+            user.save()
+
             return HttpResponseRedirect('/thanks/')
     else:
         form = Parti_Form()
