@@ -2,14 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import *
 from django.views.generic.edit import CreateView
-from django.contrib.auth import *
+from django.contrib.auth.models import *
 from .forms import *
+from django.contrib.auth import authenticate, login
 
 # This library is used to encrypt the password given by the user
 from django.contrib.auth.hashers import make_password
 # Create your views here.
 
-# This is the sign up view
+# This is the sign up view of participant
 def Parti_signup(request):
     # Check if the request method is POST
     if request.method == 'POST':
@@ -36,7 +37,7 @@ def Parti_signup(request):
                 email = email,
                 password = password,
                 is_staff = True,
-                )
+            )
 
             # Now save the user in the database
             user.save()
@@ -52,6 +53,41 @@ def Parti_signup(request):
         form = Parti_signup_form()
     # If the user lands up to the page for the first time.
     # And if the form is not perfectly filled.
-    return render(request, 'overridingAuth/parti_index.html', {'form': form})
+    return render(request, 'overridingAuth/parti_signup.html', {'form': form})
 
-#
+# This view is for the login of participant.
+def Parti_login(request):
+    # If the request method is post i.e. if the form is posted.
+    if request.method == 'POST':
+        form = Parti_login_form(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            # Find the username in the User model.
+            user = User.objects.get(
+                username = username
+            )
+
+            # if the user is Not None
+            print(user)
+            if user is not None:
+                # If the group of the particular user is participant.
+
+                group = user.groups.get(user = user)
+
+                if group.name == 'participant':
+                    user = authenticate(
+                        username = username,
+                        password = password
+                    )
+                print(user)
+                if user.is_active:
+                    login(request, user)
+                    # Go to this URL if the login is successful
+                    return HttpResponseRedirect('/thanks/')
+    # If the form is not posted.
+    else:
+        form = Parti_login_form()
+
+    return render(request, 'overridingAuth/parti_login.html', {'form': form})
