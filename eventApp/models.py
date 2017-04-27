@@ -1,4 +1,5 @@
 from django.db import models
+from overidingAuth.models import Participant
 
 # Create your models here.
 class EventList(models.Model):
@@ -74,50 +75,11 @@ class MemberList(models.Model):
     )
 
 class ParticipantsList(models.Model):
-    Event_Id = models.ForeignKey(
+    Event = models.ForeignKey(
         EventList,
         on_delete = models.CASCADE,
     )
-    Participants_Name = models.CharField(
-        max_length = 80,
-        verbose_name = "Participants Name",
-    )
-    Branches = (
-        ('CSE', "Computer Science and Engineering"),
-        ('IT', "Imformation Technology"),
-        ('EE', "Electrical Engineering"),
-        ('CE', "Civil Engineering"),
-        ('ME', "Mechanical Engineering"),
-        ('ECE', "Electronics and communication Engineering"),
-        ('PE', "Production Engineering"),
-    )
-    Participants_Branches = models.CharField(
-        max_length = 5,
-        choices = Branches,
-        verbose_name = "Participants Branch",
-        default = 1
-    )
-    Year = (
-        ('D1', 'D1'),
-        ('D2', 'D2'),
-        ('D3', 'D3'),
-        ('D4', 'D4'),
-    )
-    Participants_Year = models.CharField(
-        max_length = 3,
-        choices = Year,
-        verbose_name = 'Participants Year',
-        default = 2
-    )
-    Participants_roll_number = models.IntegerField(
-        verbose_name = "University Roll Number"
-    )
-    Participants_phone_number = models.CharField(
-        max_length = 10,
-        verbose_name = "Phone Number",
-        default = 9098989898
-    )
-    Participants_email = models.EmailField(
-        max_length = 40,
-        verbose_name = "Email"
+    Participant = models.ForeignKey(
+        Participant,
+        on_delete = models.CASCADE,
     )
