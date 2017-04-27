@@ -1,0 +1,52 @@
+{% extends 'overridingAuth/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row" id="participant_tasks">
+  <div class="col-md-4">
+    <div class="card" style="width: 20rem;">
+      <img src="{% static 'images/profile-pictures.png' %}" class="card-image">
+      <div class="card-block">
+        <h4 class="card-title">Add a profile</h4>
+        <p class="card-text">Add a profile through which you can add to an event</p>
+        <a href="#" class="btn btn-primary">Add profile</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-4">
+    <div class="card" style="width: 20rem;">
+      <img src="{% static 'images/update-profile.png' %}" class="card-image">
+      <div class="card-block">
+        <h4 class="card-title">Update the profile</h4>
+        <p class="card-text">Update some added profile if you had added something wrong.</p>
+        <a href="#" class="btn btn-primary">Update profile</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-4">
+    <div class="card" style="width: 20rem;">
+      <img src="{% static 'images/see-profiles.png' %}" class="card-image">
+      <div class="card-block">
+        <h4 class="card-title">See all profiles</h4>
+        <p class="card-text">Watch all the profile that you have added.</p>
+        <a href="#" class="btn btn-primary">See profiles</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-md-offset-4">
+    <div class="card" style="width: 20rem;">
+      <img src="{% static 'images/participate.png' %}" class="card-image">
+      <div class="card-block">
+        <h4 class="card-title">Participate</h4>
+        <p class="card-text">Choose and participate in any of the event.</p>
+        <a href="#" class="btn btn-primary">Participate</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -4,12 +4,13 @@
   <head>
     <meta charset="utf-8">
     <title>Trouble Less Events</title>
-    <script src="static/js/jquery-3.1.1.min.js"></script>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/login_success.css' %}">
   </head>
   <body>
-    <div class="container-fluid">
       <nav class="navbar navbar-default navbar-fixed-top" id="header">
         <div class="container">
           <div class="navbar-header">
@@ -17,13 +18,12 @@
           </div>
           <ul class="nav navbar-nav" id="nav-list" style="float:right; color: #EA4525;">
             <li><a href="/"><strong>Home</strong></a></li>
-            <li><a href="/#product"><strong>Products</strong></a></li>
             <li><a href="/contact-us"><strong>Contact Us</strong></a></li>
             <li><a href="/about-us"><strong>About Us</strong></a></li>
           </ul>
         </div>
       </nav>
-      <div class="container-fluid" id="main-content">
+      <div class="container" id="main-content">
         <div class = "row">
           <div class="col-md-12">
             {% block content %}
@@ -32,9 +32,8 @@
         </div>
       </div>
 
-    </div>
-    <div class ="navbar-fixed-bottom" id="footer" style="height: 60px;width: 100%; background: #ccc; margin-left: 0px; margin-top: 50px;">
-      &copy; Ranvir Singh
+    <div class ="navbar-fixed-bottom" id="footer" style="height: 60px;width: 100%; background: #ccc; margin-left: 0px; margin-top: 50px; padding-left:50px;">
+      &copy; TLessTech.
     </div>
   </body>
 </html>

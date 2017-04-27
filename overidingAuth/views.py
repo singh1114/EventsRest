@@ -48,7 +48,7 @@ def Parti_signup(request):
             user.save()
 
             # If the form is filled perfectly
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/parti_login/')
     else:
         form = Parti_signup_form()
     # If the user lands up to the page for the first time.
@@ -91,3 +91,7 @@ def Parti_login(request):
         form = Parti_login_form()
 
     return render(request, 'overridingAuth/parti_login.html', {'form': form})
+
+# This view is used if the login is successful
+def parti_tasks(request):
+    return render(request, 'overridingAuth/login_success.html')
