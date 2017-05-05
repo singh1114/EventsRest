@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.models import *
 from .forms import *
 from django.contrib.auth import authenticate, login
+from django.views.generic import TemplateView
 
 # This library is used to encrypt the password given by the user
 from django.contrib.auth.hashers import make_password
@@ -92,6 +93,6 @@ def Parti_login(request):
 
     return render(request, 'overridingAuth/parti_login.html', {'form': form})
 
-# This view is used if the login is successful
-def parti_tasks(request):
-    return render(request, 'overridingAuth/login_success.html')
+# Let's write the class based view for the basic home page
+class Home_parti_tasks(TemplateView):
+    template_name = 'overridingAuth/login_success.html'
