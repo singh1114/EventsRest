@@ -7,6 +7,8 @@ from .forms import *
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # This library is used to encrypt the password given by the user
 from django.contrib.auth.hashers import make_password
 # Create your views here.
@@ -100,3 +102,9 @@ def Parti_login(request):
 # Let's write the class based view for the basic home page
 class Home_parti_tasks(TemplateView):
     template_name = 'overridingAuth/login_success.html'
+
+# The view to that allow the addition of profile by the participant
+class addProfile(LoginRequiredMixin, CreateView):
+   model = Participant
+   fields = ['Participant_F_Name']
+   template_name = 'overridingAuth/add_profile.html'
