@@ -13,6 +13,8 @@ from django.contrib.auth.hashers import make_password
 
 # This is the sign up view of participant
 def Parti_signup(request):
+    if request.user.is_authenticated():
+         return HttpResponseRedirect("/parti_tasks/")
     # Check if the request method is POST
     if request.method == 'POST':
 
@@ -58,6 +60,8 @@ def Parti_signup(request):
 
 # This view is for the login of participant.
 def Parti_login(request):
+    if request.user.is_authenticated():
+         return HttpResponseRedirect("/parti_tasks/")
     # If the request method is post i.e. if the form is posted.
     if request.method == 'POST':
         form = Parti_login_form(request.POST)
