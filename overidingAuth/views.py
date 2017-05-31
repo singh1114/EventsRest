@@ -111,27 +111,32 @@ class Home_parti_tasks(TemplateView):
 # The view to that allow the addition of profile by the participant
 class addProfile(LoginRequiredMixin, CreateView):  
     # login fail credentials
-    login_url = '/parti_login'
+	login_url = '/parti_login'
     
     # if the user is already logged in 
-   # model = Participant
-  #  fields = [
- #       'Participant_F_Name',
-#	'Participant_L_Name',
-#	'Participant_Branch',
-#	'Participant_Year',
-#	'Participant_roll_number',
-#	'Participant_phone_number',
-#	'Participant_email'
-    # ]
-    #template_name = 'overridingAuth/add_profile.html'
+	model = Participant
+	fields = [
+	'Participant_F_Name',
+	'Participant_L_Name',
+	'Participant_Branch',
+	'Participant_Year',
+	'Participant_roll_number',
+	'Participant_phone_number',
+	'Participant_email'
+	]
+	template_name = 'overridingAuth/add_profile.html'
     
     # When form is received with valid data go to this url
-    #success_url = '/parti_tasks/'
+	success_url = '/parti_tasks/'
 	
     # Define this function to pre-populate the fields with some values
-    #def get_initial(self):
-    #	return {'Participant_F_Name': self.request.user.first_name}
+	def get_initial(self):
+		initials = {
+			'Participant_F_Name': self.request.user.first_name,
+			'Participant_L_Name': self.request.user.last_name,
+			'Participant_email': self.request.user.email
+		}		
+		return initials 
     # Alternatively we can use this implementation
     # initial = {'Participant_F_Name': 'Mr. Khan Sama'}
 
@@ -140,7 +145,7 @@ class addProfile(LoginRequiredMixin, CreateView):
     # Default implementation does this
     # simply redirects to success_url
     # For the CreateView this function fill db by itself
-    #def form_valid():
+	def form_valid():
     	# For the time being let's not add anything up here
-    #    pass
+		pass
 
