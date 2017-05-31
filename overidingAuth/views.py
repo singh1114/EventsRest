@@ -49,7 +49,7 @@ def Parti_signup(request):
 
             # It is very important to use this code here.
             # Once the user is added we can change the group to the user.
-            user.groups.add(2)
+            user.groups.add(1)
             user.save()
 
             # If the form is filled perfectly
@@ -68,12 +68,12 @@ def Parti_login(request):
     if request.method == 'POST':
         form = Parti_login_form(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+            Username = form.cleaned_data.get('username')
+            Password = form.cleaned_data.get('password')
 
             # Find the username in the User model.
             user = User.objects.get(
-                username = username
+                username = Username
             )
 
             # if the user is Not None
@@ -82,17 +82,22 @@ def Parti_login(request):
                 # If the group of the particular user is participant.
 
                 group = user.groups.get(user = user)
-
                 if group.name == 'participant':
                     user = authenticate(
-                        username = username,
-                        password = password
-                    )
+		        username = Username, 
+		        password = Password
+		    )
                 print(user)
-                if user.is_active:
-                    login(request, user)
-                    # Go to this URL if the login is successful
-                    return HttpResponseRedirect('/thanks/')
+		# The backend authenticated the user
+                if user is not None:
+                    if user.is_active:
+                        login(request, user)
+                        # Go to this URL if the login is successful
+                        return HttpResponseRedirect('/thanks/')
+
+		# The backend didn't authenticated the user
+                else:
+                    return HttpResponseRedirect('/parti_login/')
     # If the form is not posted.
     else:
         form = Parti_login_form()
@@ -104,7 +109,38 @@ class Home_parti_tasks(TemplateView):
     template_name = 'overridingAuth/login_success.html'
 
 # The view to that allow the addition of profile by the participant
-class addProfile(LoginRequiredMixin, CreateView):
-   model = Participant
-   fields = ['Participant_F_Name']
-   template_name = 'overridingAuth/add_profile.html'
+class addProfile(LoginRequiredMixin, CreateView):  
+    # login fail credentials
+    login_url = '/parti_login'
+    
+    # if the user is already logged in 
+   # model = Participant
+  #  fields = [
+ #       'Participant_F_Name',
+#	'Participant_L_Name',
+#	'Participant_Branch',
+#	'Participant_Year',
+#	'Participant_roll_number',
+#	'Participant_phone_number',
+#	'Participant_email'
+    # ]
+    #template_name = 'overridingAuth/add_profile.html'
+    
+    # When form is received with valid data go to this url
+    #success_url = '/parti_tasks/'
+	
+    # Define this function to pre-populate the fields with some values
+    #def get_initial(self):
+    #	return {'Participant_F_Name': self.request.user.first_name}
+    # Alternatively we can use this implementation
+    # initial = {'Participant_F_Name': 'Mr. Khan Sama'}
+
+
+    # This function works whenever valid data is pushed 
+    # Default implementation does this
+    # simply redirects to success_url
+    # For the CreateView this function fill db by itself
+    #def form_valid():
+    	# For the time being let's not add anything up here
+    #    pass
+
