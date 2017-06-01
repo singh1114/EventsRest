@@ -62,47 +62,60 @@ def Parti_signup(request):
 
 # This view is for the login of participant.
 def Parti_login(request):
-    if request.user.is_authenticated():
+    
+	if request.user.is_authenticated():
          return HttpResponseRedirect("/parti_tasks/")
-    # If the request method is post i.e. if the form is posted.
-    if request.method == 'POST':
-        form = Parti_login_form(request.POST)
-        if form.is_valid():
-            Username = form.cleaned_data.get('username')
-            Password = form.cleaned_data.get('password')
+    
+	# Initialize a variable to check if a URL has a next parameter
+	next = ""
+
+	# If it is GET request
+	if request.GET:
+		next = request.GET['next']
+
+	# If the request method is post i.e. if the form is posted.
+	if request.method == 'POST':
+		form = Parti_login_form(request.POST)
+		if form.is_valid():
+			Username = form.cleaned_data.get('username')
+			Password = form.cleaned_data.get('password')
 
             # Find the username in the User model.
-            user = User.objects.get(
+			user = User.objects.get(
                 username = Username
             )
 
             # if the user is Not None
-            print(user)
-            if user is not None:
+			if user is not None:
                 # If the group of the particular user is participant.
 
-                group = user.groups.get(user = user)
-                if group.name == 'participant':
-                    user = authenticate(
-		        username = Username, 
-		        password = Password
-		    )
-                print(user)
-		# The backend authenticated the user
-                if user is not None:
-                    if user.is_active:
-                        login(request, user)
+				group = user.groups.get(user = user)
+				if group.name == 'participant':
+					user = authenticate(
+		        		username = Username, 
+		        		password = Password
+		    	)
+				# The backend authenticated the user
+				if user is not None:
+					if user.is_active:
+						login(request, user)
                         # Go to this URL if the login is successful
-                        return HttpResponseRedirect('/thanks/')
 
-		# The backend didn't authenticated the user
-                else:
-                    return HttpResponseRedirect('/parti_login/')
+						# check if the next is empty or not
+						if next == "":
+							return HttpResponseRedirect('/parti_tasks/')
+
+						else:
+							return HttpResponseRedirect(next)
+
+				# The backend didn't authenticated the user
+				else:
+					return HttpResponseRedirect('/parti_login/')
     # If the form is not posted.
-    else:
-        form = Parti_login_form()
+	else:
+		form = Parti_login_form()
 
-    return render(request, 'overridingAuth/parti_login.html', {'form': form})
+	return render(request, 'overridingAuth/parti_login.html', {'form': form})
 
 # Let's write the class based view for the basic home page
 class Home_parti_tasks(TemplateView):
