@@ -1,0 +1,21 @@
+{% extends 'overridingAuth/base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<h3>Events</h3>
+		<table>	
+			<tr>
+				<th> EVENT NAME </th>
+				<th> PARTICIPATE </th>
+			</tr>
+			{% for events in object_list %}
+				<tr>
+					<td> {{ events.Event_Name }} </td>
+					<td> 
+						<button type="button btn-primary">
+							<a href="/event/{{ events.pk  }}">Participate</a>
+						</button>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+{% endblock %} 

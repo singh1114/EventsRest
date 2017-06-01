@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+
 from .models import *
+from eventApp.models import EventList
+
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import *
 from .forms import *
 from django.contrib.auth import authenticate, login
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -162,3 +165,8 @@ class addProfile(LoginRequiredMixin, CreateView):
     	# For the time being let's not add anything up here
 		pass
 
+# View to show all the events present in the database
+
+class eventList(ListView):
+	model = EventList
+	template_name = 'overridingAuth/eventlist.html'
