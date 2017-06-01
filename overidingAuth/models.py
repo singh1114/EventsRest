@@ -31,7 +31,7 @@ class Participant(models.Model):
     )
     Branches = (
         ('CSE', "Computer Science and Engineering"),
-        ('IT', "Imformation Technology"),
+        ('IT', "Information Technology"),
         ('EE', "Electrical Engineering"),
         ('CE', "Civil Engineering"),
         ('ME', "Mechanical Engineering"),
