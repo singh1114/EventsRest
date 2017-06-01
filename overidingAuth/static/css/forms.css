@@ -1,3 +1,9 @@
 errorlist{
   
 }
+form{
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	margin: auto;
+	padding: 10px;
+}
