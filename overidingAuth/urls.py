@@ -12,5 +12,8 @@ urlpatterns = [
     url(r'^add_profile', views.addProfile.as_view(), name = 'add_profile'),
 	
 	# URL to list all the events in database
-	url(r'^all_events', views.eventList.as_view(), name = 'all_events')
+	url(r'^all_events', views.eventList.as_view(), name = 'all_events'),
+
+	# URL to choose a profile to take part in the event
+	url(r'^event/(?P<pk>[0-9]+)/$', views.chooseParticipant.as_view(), name = 'choose_participant')
 ]

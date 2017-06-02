@@ -21,15 +21,15 @@ class memorpart(models.Model):
         return self.user
 
 class Participant(models.Model):
-    Participant_F_Name = models.CharField(
+	Participant_F_Name = models.CharField(
         max_length = 80,
         verbose_name = "Participant First Name",
     )
-    Participant_L_Name = models.CharField(
+	Participant_L_Name = models.CharField(
         max_length = 80,
         verbose_name = "Participant Last Name",
     )
-    Branches = (
+	Branches = (
         ('CSE', "Computer Science and Engineering"),
         ('IT', "Information Technology"),
         ('EE', "Electrical Engineering"),
@@ -38,33 +38,33 @@ class Participant(models.Model):
         ('ECE', "Electronics and communication Engineering"),
         ('PE', "Production Engineering"),
     )
-    Participant_Branch = models.CharField(
+	Participant_Branch = models.CharField(
         max_length = 5,
         choices = Branches,
         verbose_name = "Participant Branch",
         default = 1
     )
-    Year = (
+	Year = (
         ('D1', 'D1'),
         ('D2', 'D2'),
         ('D3', 'D3'),
         ('D4', 'D4'),
     )
-    Participant_Year = models.CharField(
+	Participant_Year = models.CharField(
         max_length = 3,
         choices = Year,
         verbose_name = 'Participant Year',
         default = 2
     )
-    Participant_roll_number = models.IntegerField(
+	Participant_roll_number = models.IntegerField(
         verbose_name = "University Roll Number"
     )
-    Participant_phone_number = models.CharField(
+	Participant_phone_number = models.CharField(
         max_length = 10,
         verbose_name = "Phone Number",
         default = 9098989898
     )
-    Participant_email = models.EmailField(
+	Participant_email = models.EmailField(
         max_length = 40,
         verbose_name = "Email"
     )

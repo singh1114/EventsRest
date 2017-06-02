@@ -131,6 +131,7 @@ class addProfile(LoginRequiredMixin, CreateView):
     
     # if the user is already logged in 
 	model = Participant
+	
 	fields = [
 	'Participant_F_Name',
 	'Participant_L_Name',
@@ -150,7 +151,7 @@ class addProfile(LoginRequiredMixin, CreateView):
 		initials = {
 			'Participant_F_Name': self.request.user.first_name,
 			'Participant_L_Name': self.request.user.last_name,
-			'Participant_email': self.request.user.email
+			'Participant_email': self.request.user.email,
 		}		
 		return initials 
     # Alternatively we can use this implementation
@@ -161,12 +162,23 @@ class addProfile(LoginRequiredMixin, CreateView):
     # Default implementation does this
     # simply redirects to success_url
     # For the CreateView this function fill db by itself
-	def form_valid():
+	#def form_valid():
     	# For the time being let's not add anything up here
-		pass
+	#	pass
+
 
 # View to show all the events present in the database
 
 class eventList(ListView):
 	model = EventList
 	template_name = 'overridingAuth/eventlist.html'
+
+
+# View to choose a profile for the event participation
+
+class chooseParticipant(LoginRequiredMixin, ListView):
+	login_url = '/parti_login/'
+	
+	model = Participant
+	template_name = 'overridingAuth/chooseparticipant.html'
+

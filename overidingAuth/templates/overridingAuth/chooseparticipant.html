@@ -1,0 +1,21 @@
+{% extends 'overridingAuth/base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<h3>Profiles</h3>
+		<table>
+			<tr>	
+			<th> PROFILE NAME </th>
+			<th> PARTICIPATE </th>
+			</tr>
+			{% for profiles in object_list %}	 
+			<tr>
+				<td> {{ profiles.Participant_F_Name }} </td>
+				<td>
+					<button type="button btn-primary">
+						<a href="./profile/{{ profiles.pk  }}">Participate</a>
+					</button>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+{% endblock %} 
